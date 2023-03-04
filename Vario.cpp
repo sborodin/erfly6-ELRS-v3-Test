@@ -1,5 +1,12 @@
 #include "Vario.h"
 
+#include "hal.h"
+#include "voice.h"
+#include <string.h>
+#include <stdio.h>
+
+
+#ifdef VARIO
 typedef struct VarioBuff_t {
   uint32_t ToneTimeLeft;
   uint32_t TonePeriod;
@@ -28,12 +35,12 @@ M/S*100,Hertz,Cycle,Duty*/
  { 500 ,880 ,250, 50},
  { 1000,1100,200, 50}}
 */
- {-1000,288 ,650,80},
- {-300 ,416 ,650,80},
- {-200 ,448 ,650,80},
- {-100 ,480 ,650,80},
- {-50  ,496 ,650,80},
- {-0   ,512 ,600, 50},
+ {-1000,288 ,650, 80},
+ {-300 ,416 ,650, 80},
+ {-200 ,448 ,650, 80},
+ {-100 ,480 ,650, 80},
+ {-50  ,496 ,650, 80},
+ { 0   ,512 ,600, 50},
  { 50  ,550 ,600, 50},
  { 100 ,590 ,550, 50},
  { 200 ,670 ,400, 50},
@@ -56,9 +63,7 @@ tone=10.0,1152,240,50
 */
 };
 /*------------------------------------------------------------------------------------------*/
-static int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min, int32_t out_max) {
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
+
 /*------------------------------------------------------------------------------------------*/
 static void Vario_GetData(int32_t Vspeed, Vario_data *data) {
   uint8_t MinPoint;
@@ -132,3 +137,7 @@ void Vario_driver(void) {
     WorkBuff.ToneTimeLeft--;
 }
 /*------------------------------------------------------------------------------------------*/
+
+#endif
+
+
