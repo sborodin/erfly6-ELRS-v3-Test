@@ -1,8 +1,3 @@
-
-
-
-
-
 #include "BoardI6.h"
 #include "../er9x.h"
 #include "../hal.h"
@@ -10,10 +5,6 @@
 #include "../LoRa/ELRS.h"
 #include "../crossfire/crossfire.h"
 #include "../pulses.h"
-#include "../../drivers/fsl_uart_dma.h"
-#include "../../drivers/fsl_lpsci_dma.h"
-
-
 
 char TX_name[] = "FlySky-I6";  
 //volatile uint32_t g_tickcount =0;
@@ -344,14 +335,14 @@ uint8_t PINB(void) {
   in = BTN_L_GetVal();
   BTN_R_PutVal(0x0F);
 
-  SETBIT(pinb, INP_B_KEY_MEN, READBIT(in, FS_OK));
-  SETBIT(pinb, INP_B_KEY_EXT, READBIT(in, FS_CANCEL));
+  SETBIT(pinb, INP_B_KEY_UP, READBIT(in, FS_UP));
+  SETBIT(pinb, INP_B_KEY_DWN, READBIT(in, FS_DOWN));
   if (BIND_GetVal() == 0) {
-    SETBIT(pinb, INP_B_KEY_RGT, READBIT(in, FS_UP));
-    SETBIT(pinb, INP_B_KEY_LFT, READBIT(in, FS_DOWN));
+    SETBIT(pinb, INP_B_KEY_RGT, READBIT(in, FS_OK));
+    SETBIT(pinb, INP_B_KEY_LFT, READBIT(in, FS_CANCEL));
   } else {
-    SETBIT(pinb, INP_B_KEY_UP, READBIT(in, FS_UP));
-    SETBIT(pinb, INP_B_KEY_DWN, READBIT(in, FS_DOWN));
+    SETBIT(pinb, INP_B_KEY_MEN, READBIT(in, FS_OK));
+    SETBIT(pinb, INP_B_KEY_EXT, READBIT(in, FS_CANCEL));
   }
   return pinb;
 }
@@ -662,12 +653,6 @@ void SetPRTTimPeriod(uint8_t prot) {
   case PROTO_AFHDS2A:
     TPM0->MOD = TPM_MOD_MOD(11579);
     break;
-  case PROTO_AFHDS:
-    TPM0->MOD = TPM_MOD_MOD(/*0x11B1*/4499);
-    break;
-#ifdef PROTO_ELRS1
-  case PROTO_ELRS1:
-#endif
   case PROTO_ELRS2:
     TPM0->MOD = TPM_MOD_MOD(CROSSFIRE_PERIOD*3000-1);
     break;
@@ -756,12 +741,6 @@ void SPI0_IRQHandler(void) {
         SETBIT(RadioState, CALLER, TIM_CALL);
         ActionAFHDS2A();
         break;
-      case PROTO_AFHDS:
-        ActionAFHDS();
-        break;
-#ifdef PROTO_ELRS1
-      case PROTO_ELRS1:
-#endif
       case PROTO_ELRS2:
         crsf_action();
         break;

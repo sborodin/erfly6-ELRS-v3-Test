@@ -240,9 +240,6 @@ void A7105_Init(void)
         case PROTO_AFHDS2A:
           A7105_Regs = (uint8_t *)AFHDS2A_A7105_regs;
           break;
-        case PROTO_AFHDS:
-          A7105_Regs = (uint8_t *)AFHDS_A7105_regs;
-          break;
         default:
           return;
         }

@@ -33,8 +33,8 @@
 
 
 #define  PCBI6 1
-#define deviceId 0xEE
-#define handsetId 0xEF
+//#define deviceId 0xEE
+//#define handsetId 0xEF
 
 #define  TRACE(...) while(0){}
 #define DIM(arr) (sizeof((arr))/sizeof((arr)[0]))
@@ -203,7 +203,7 @@ typedef  uint8_t event_t;
 
  extern int32_t g_elrs_update_rate;
   extern int32_t        g_elrs_lag ;
-#define  HIGH_UART
+//#define  HIGH_UART
 
 #define MIN_REFRESH_RATE      1750 /* us */
 #define MAX_REFRESH_RATE     50000 /* us */

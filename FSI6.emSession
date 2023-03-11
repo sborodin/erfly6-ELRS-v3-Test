@@ -77,7 +77,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="45" y="563" useTextEdit="1" path="Sources/crossfire/elrsV2.cpp" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="3" y="563" useTextEdit="1" path="Sources/crossfire/elrsV2.cpp" left="0" top="510" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="116" useTextEdit="1" path="Sources/LoRa/crsf_protocol.h" left="0" top="116" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="22" y="85" useTextEdit="1" path="Sources/crossfire/crossfire.cpp" left="0" top="85" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="219" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/crossfire/crossfire.cpp" path="Sources/crossfire/crossfire.h" left="0" top="219" codecName="Default"/>
@@ -85,19 +85,19 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="199" useTextEdit="1" path="Sources/AFHDS2A_a7105.cpp" left="0" top="199" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="1449" useTextEdit="1" path="Sources/er9x.cpp" left="0" top="1411" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="1080" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/menus.cpp" path="Sources/er9x.h" left="0" top="1059" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="147" useTextEdit="1" path="Sources/pulses.cpp" left="0" top="753" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="68" useTextEdit="1" path="Sources/AFHDS.cpp" left="0" top="68" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="147" useTextEdit="1" path="Sources/pulses.cpp" left="0" top="147" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="68" useTextEdit="1" path="Sources/AFHDS.cpp" left="0" top="17" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="8828" useTextEdit="1" path="Sources/menus.cpp" left="0" selected="1" top="8804" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="372" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/menus.cpp" path="Sources/en.h" left="0" top="331" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="30" y="229" useTextEdit="1" path="Sources/A7105_SPI.cpp" left="0" top="229" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="121" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/crossfire/crossfire.cpp" path="Sources/iface_a7105.h" left="0" top="121" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="41" useTextEdit="1" path="Sources/pers.cpp" left="0" top="155" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="27" y="76" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/crossfire/elrsV2.cpp" path="Sources/menus.h" left="0" top="86" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="41" useTextEdit="1" path="Sources/pers.cpp" left="0" top="41" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="27" y="76" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/crossfire/elrsV2.cpp" path="Sources/menus.h" left="0" top="76" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="Sources/crossfire/tiny_string.cpp" left="0" top="10" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="12" useTextEdit="1" path="Sources/I6/BoardI6.h" left="0" top="6" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="11" y="159" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/menus.cpp" path="Sources/myeeprom.h" left="0" top="270" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="11" y="159" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/menus.cpp" path="Sources/myeeprom.h" left="0" top="159" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="575" useTextEdit="1" openedFrom="D:/Programming/Firmware/ErFly6_1.0.8.2/Sources/I6/BoardI6.cpp" path="CMSIS_4/CMSIS/Include/MKL16Z4.h" left="0" top="554" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="82" useTextEdit="1" path="Sources/hal.h" left="0" top="137" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="82" useTextEdit="1" path="Sources/hal.h" left="0" top="82" codecName="Default"/>
  </Files>
  <EMStudioWindow activeProject="FSI6" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

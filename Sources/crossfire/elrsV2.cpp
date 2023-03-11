@@ -36,22 +36,6 @@ struct FieldFunctions
 uint8_t badPkt=0;
 uint32_t goodPkt=0;
 
-/*FieldProps fields[25];
-uint8_t curfieldId = 1;
-uint8_t curselectIdx = 0;
-uint8_t curFieldChunk =0;
-uint8_t curNumSelection = 0;
-static uint32_t fieldTimeout= 0;
-static uint32_t linkstatTimeout = 0;
-uint8_t fieldData[72]; 
-uint8_t fieldDataLen = 0;
-int8_t expectedChunks = -1;
-uint8_t statusComplete = 0; 
-char fields_count=0;
-char allParamsLoaded=0;
-bool itemmodified = false;
-bool bMenuShown = false;*/
-
 #define COL1_CHAR_LEN 12
 #define COL2_CHAR_LEN 9
 #define COL2           12*FW
@@ -60,7 +44,9 @@ static constexpr uint8_t maxLineIndex  =  6;
 static constexpr uint8_t textXoffset   =  0;
 static constexpr uint8_t textYoffset   =  3;
 static constexpr uint8_t textSize      =  8;
-static uint8_t reusableBuffer[1200];
+
+//static uint8_t reusableBuffer[0x800]; // [2048]
+static uint8_t reusableBuffer[512];
 
 static constexpr uint8_t RESULT_OK = 2;
 static constexpr uint8_t RESULT_CANCEL = 1;
@@ -69,11 +55,15 @@ static constexpr uint8_t NAMES_BUFFER_SIZE  = 192;
 static constexpr uint8_t VALUES_BUFFER_SIZE = 176;
 static uint8_t *namesBuffer = reusableBuffer;
 uint8_t namesBufferOffset = 0;
-static uint8_t *valuesBuffer = &reusableBuffer[NAMES_BUFFER_SIZE];
+
+static uint8_t *valuesBuffer = &reusableBuffer[VALUES_BUFFER_SIZE];
+//static uint8_t *valuesBuffer = &reusableBuffer[NAMES_BUFFER_SIZE];
+
 uint8_t valuesBufferOffset = 0;
 
-static constexpr uint8_t FIELD_DATA_MAX_LEN = (512 - NAMES_BUFFER_SIZE - VALUES_BUFFER_SIZE);
-static uint8_t *fieldData = &reusableBuffer[NAMES_BUFFER_SIZE + VALUES_BUFFER_SIZE];
+static constexpr uint8_t FIELD_DATA_MAX_LEN = 128; //(512 - NAMES_BUFFER_SIZE - VALUES_BUFFER_SIZE); // 512-192-176 = 144
+
+static uint8_t *fieldData = &reusableBuffer[512];//&reusableBuffer[NAMES_BUFFER_SIZE + VALUES_BUFFER_SIZE]; // 192+176=368
 uint8_t fieldDataLen = 0;
 
 static constexpr uint8_t FIELDS_MAX_COUNT = 32;
@@ -109,7 +99,6 @@ int8_t expectedChunks = -1;
 tmr10ms_t linkstatTimeout = 100;
 uint8_t reloadFolder = 0;
 
-#define tostring(c)       (char)(c + 48)
 #define getTime           get_tmr10ms
 #define EVT_VIRTUAL_EXIT  EVT_KEY_BREAK(KEY_EXIT)
 #define EVT_VIRTUAL_ENTER EVT_KEY_BREAK(KEY_MENU)
@@ -117,7 +106,7 @@ uint8_t reloadFolder = 0;
 #define EVT_VIRTUAL_PREV  EVT_KEY_FIRST(KEY_DOWN)
 
 #define  lcdDrawText lcd_putsAtt
-#define lcdDrawSizedText lcd_putsnAtt  
+#define lcdDrawSizedText lcd_putsnAtt
 
 void crossfireTelemetryPush4(const uint8_t cmd, const uint8_t third, const uint8_t fourth)
 {
@@ -199,6 +188,61 @@ static void incrField(int8_t step)
   }
   field->value = limit<uint8_t>(min, field->value + step, max);
 }
+
+/*
+local function incrField(step)
+  
+  local field = getField(lineIndex)
+
+  if field.type == 10 then
+    local byte = 32
+    if charIndex <= #field.value then 
+      byte = string.byte(field.value, charIndex) + step
+    end
+    if byte < 32 then
+      byte = 32
+    elseif byte > 122 then
+      byte = 122 
+    end 
+    if charIndex <= #field.value then
+      field.value = string.sub(field.value, 1, charIndex-1) .. string.char(byte) .. string.sub(field.value, charIndex+1)
+    else 
+      field.value = field.value .. string.char(byte)
+    end             
+    else      
+
+  local min, max = 0, 0
+  if ((field.type <= 5) or (field.type == 8)) then
+     min = field.min or 0
+     max = field.max or 0
+     step = field.step * step
+  elseif field.type == 9 then 
+      min = 0
+      max = #field.values - 1
+  end      
+  field.value = constrain(field.value + step, min, max)
+  end                                                                                                                         
+*/
+/*static void incrField(int8_t step)
+{
+  FieldProps * field = getField(lineIndex);
+
+  if(field->type == 10)
+    
+
+  uint8_t min = 0, max = 0;
+
+  if((field->type <=5) or (field->type == 8) )
+  {
+    max = getSemicolonCount((char *)&valuesBuffer[field->valuesOffset], field->valuesLength); 
+  }
+  else if (field->type == 9)
+  {
+    max = getSemicolonCount((char *)&valuesBuffer[field->valuesOffset], field->valuesLength); 
+  }
+  field->value = limit<uint8_t>(min, field->value + step, max);
+}
+*/
 
 void selectField(int8_t step)
 {
@@ -302,31 +346,7 @@ void fieldTextSelectionDisplay(FieldProps * field, uint8_t y, uint8_t attr)
 
 void fieldStringDisplay(FieldProps * field, uint8_t y, uint8_t attr)
 {
-  /*const char* backPat = "[Back]";
-  const char* folderPat = "> %s";
-  const char* cmdPat = "[%s]";
-  const char *pat;
-  uint8_t textIndent = textXoffset + 9;
-  if (field->type == 11)
-  {
-    pat = folderPat;
-    textIndent = textXoffset;
-  } 
-  else if (field->type == 14)
-  {
-    pat = backPat;
-  } 
-  else if (field->type == 15)
-  {
-    pat = cmdPat;
-  }
-  char stringTmp[24];
-  tiny_sprintf((char *)&stringTmp, pat, field->nameLength, 1, (char *)&namesBuffer[field->nameOffset]);
-  lcdDrawText(textIndent, y, (char *)&stringTmp, attr);
-  if (field->type == 9)
-  {*/
-    lcdDrawSizedText(COL2, y, (char *)&valuesBuffer[field->valuesOffset], field->valuesLength, attr);
-  //}
+  lcdDrawSizedText(COL2, y, (char *)&valuesBuffer[field->valuesOffset], field->valuesLength, attr);
 }
 
 void fieldFolderOpen(FieldProps * field)
