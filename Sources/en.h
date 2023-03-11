@@ -118,7 +118,9 @@
 // menus.cpp
 // ***********
 //#define STR_TELEM_ITEMS   "\004----A1= A2= RSSITSSITim1Tim2Alt GaltGspdT1= T2= RPM FUELMah1Mah2CvltBattAmpsMah CtotFasVAccXAccYAccZVspdGvr1Gvr2Gvr3Gvr4Gvr5Gvr6Gvr7FwatRxV Hdg A3= A4= SC1 SC2 SC3 SC4 TmOK"
-#define STR_TELEM_ITEMS	   "\004----SNR Noi.RSSIErr.TSSIInV TempRPM ExV CellCurrFuelThroHeadRoC CoG GPS AccXAccYAccZRollPit.Yaw VspeGSpeDistArm.ModePresOdo1Odo2Spe TX_VLa  Lo  GAltAlt AltMS85 S86 S87 S88 S89 S8A TmOkGvr1Gvr2Gvr3Gvr4Gvr5Gvr6Gvr7SC1 SC2 SC3 SC4 Tim1Tim2"
+//#define STR_TELEM_ITEMS	   "\004----SNR Noi.RSSIErr.TSSIInV TempRPM ExV CellCurrFuelThroHeadRoC CoG GPS AccXAccYAccZRollPit.Yaw VspeGSpeDistArm.ModePresOdo1Odo2Spe TX_VLa  Lo  GAltAlt AltMS85 S86 S87 S88 S89 S8A TmOkGvr1Gvr2Gvr3Gvr4Gvr5Gvr6Gvr7SC1 SC2 SC3 SC4 Tim1Tim2"
+#define STR_TELEM_CRSF	   "\005-----SNR  NoiseRSSI ErrorTSSI BattVTemp RPM  ExV  Cell Curr Fuel Thro Head RoC  CoG  GPS  AccX AccY AccZ Roll PitchYaw  Vspe GSpe Dist ArmedMode PressOdo1 Odo2 SpeedTX_V Lat  Lon  GAlt Alt  AltM TxFPSRxModTxPwrTxQlyTxSNRTxRFPTmOk Gvr1 Gvr2 Gvr3 Gvr4 Gvr5 Gvr6 Gvr7 SC1  SC2  SC3  SC4  Tim1 Tim2"
+#define STR_TELEM_ITEMS	   "\005-----SNR  NoiseRSSI ErrorTSSI InV  Temp RPM  ExV  Cell Curr Fuel Thro Head RoC  CoG  GPS  AccX AccY AccZ Roll PitchYaw  Vspe GSpe Dist ArmedMode PressOdo1 Odo2 SpeedTX_V Lat  Lon  GAlt Alt  AltM S85  S86  S87  S88  S89  S8A  TmOk Gvr1 Gvr2 Gvr3 Gvr4 Gvr5 Gvr6 Gvr7 SC1  SC2  SC3  SC4  Tim1 Tim2"
 #define STR_TELEM_SHORT    "\004----TIM1TIM2BATTGvr1Gvr2Gvr3Gvr4Gvr5Gvr6Gvr7"
 #define STR_GV             "GV"
 #define STR_OFF_ON         "OFFON "
@@ -549,9 +551,9 @@
 #endif
 
 
-#define STR_CRSF_TYPE "Pkt. Rate\037TLM Ratio\037Power\037RfFreq\037Bind\037Enable Wifi"
+#define STR_CRSF_TYPE "PKTRTE\037TLMRAT\037MAXPWR\037RF\037BIND\037ENWIFI"
 #define STR_CRSF_POWER "\00610mW  25mW  50mW  100mW 250mW 500mW 1000mW2000mW"
-#define STR_CRSf_TLM   "\005OFF  1:1281:64 1:32 1:16 1:8  1:4  1:2  "
+#define STR_CRSf_TLM   "\005OFF  1:128 1:64 1:32 1:16 1:8  1:4  1:2  "
 #define STR_CRSF_RATE_127x  "\00525Hz 50Hz 100Hz200Hz"
 #define STR_CRSF_RATE_128x  "\00550Hz 150Hz250Hz500Hz"
 #define STR_CRSF_RFFREQ     "\006915 AU915 FCC868 EU433 AU433 EU2.4G  "

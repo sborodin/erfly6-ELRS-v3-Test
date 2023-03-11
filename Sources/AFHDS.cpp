@@ -1,7 +1,7 @@
+/*
 #include "er9x.h"
 #include "iface_a7105.h"
 
-/*---------------------------------------------------------------------------*/
 void ActionAFHDS(void) {
 
   RadioActive = true;
@@ -24,7 +24,7 @@ void ActionAFHDS(void) {
   RadioActive = false;
 
 }
-/*---------------------------------------------------------------------------*/
+
 const uint8_t AFHDS_tx_channels[8][4] = {
 	{ 0x12, 0x34, 0x56, 0x78},
 	{ 0x18, 0x27, 0x36, 0x45},
@@ -35,7 +35,7 @@ const uint8_t AFHDS_tx_channels[8][4] = {
 	{ 0x71, 0x62, 0x84, 0x35},
 	{ 0x71, 0x86, 0x43, 0x52}
 };
-/*---------------------------------------------------------------------------*/
+
 void initAFHDS(void) {
   uint8_t chanrow;
   uint8_t chanoffset;
@@ -68,3 +68,4 @@ void initAFHDS(void) {
 
 }
 
+*/

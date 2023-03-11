@@ -297,7 +297,7 @@ void AFHDS2A_build_packet(uint8_t type) {
        if (g_model.failsafeRepeat)
          channelMicros = convert_failsafe_ppm(ch);
        else
-         channelMicros = g_chans512[ch] / 2 + RADIO_PPM_CENTER;
+         channelMicros = imap(g_chans512[ch], -1024, 1024, -1000, 1000) / 2 + RADIO_PPM_CENTER;
        packet[9 + ch * 2] = channelMicros & 0xFF;
        packet[10 + ch * 2] = (channelMicros >> 8) & 0xFF;
      }

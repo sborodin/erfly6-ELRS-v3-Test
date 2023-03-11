@@ -115,7 +115,7 @@ TxConfig::Commit()
 
 
 #ifndef ERFLY_BOARDI6
-#if defined(PLATFORM_ESP3 2)
+#if defined(PLATFORM_ESP3s2)
     // Write parts to NVS
     if (m_modified & MODEL_CHANGED)
     {

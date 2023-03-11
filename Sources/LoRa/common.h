@@ -8,6 +8,8 @@
 #include "SX127xDriver.h"
 #endif
 
+//#define Regulatory_Domain_ISM_2400
+
 #if defined(Regulatory_Domain_ISM_2400)
 #include "SX1280Driver.h"
 #endif

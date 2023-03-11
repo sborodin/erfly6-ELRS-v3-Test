@@ -1816,7 +1816,7 @@ t_pgOfs = evalOffset(sub);
 
 	if ( sub < NUM_CHNOUT )
 	{
-    lcd_outdez( 13*FW, 0, g_chans512[sub]/2 + 1500 ) ;
+    lcd_outdez( 13*FW, 0, imap(g_chans512[sub], -1024, 1024, -1000, 1000)/2 + 1500 ) ;
 	}
 	
 	switch(Tevent)
@@ -6479,12 +6479,21 @@ void dispInVExVDbl( uint8_t y )
       lcd_puts_P(11*FW-2, y, PSTR("ExV"));
       putsTelemValue( 14*FW - 2, y-FH, (int16_t)AFHDS2A_tel_data[FST_IDX_EXTV], FST_IDX_EXTV, LEFT|NO_UNIT);
 }
-void dispSignalQality( uint8_t y){
 
+void dispSignalQality( uint8_t y)
+{
+  if (g_model.protocol == PROTO_ELRS2)
+    {
+      lcd_puts_P(2+FW, y, PSTR("RSSI"));
+      lcd_puts_P(FW * 11, y, PSTR("LQ"));
+    }
+  else
+    {
       lcd_puts_P(2+FW, y, PSTR("Err"));
-      putsTelemValue(10 * FW, y, (int16_t)AFHDS2A_tel_data[FST_IDX_ERR], FST_IDX_ERR, NO_UNIT);
-      lcd_puts_P(FW * 11, y, PSTR("SNR"));
-      putsTelemValue( FW * 20, y, (int16_t)AFHDS2A_tel_data[FST_IDX_SNR], FST_IDX_SNR, NO_UNIT);
+      lcd_puts_P(FW * 11, y, PSTR("RSSI"));
+    }
+  putsTelemValue(10 * FW, y, (int16_t)AFHDS2A_tel_data[FST_IDX_ERR], FST_IDX_ERR, NO_UNIT);
+  putsTelemValue( FW * 20, y, (int16_t)AFHDS2A_tel_data[FST_IDX_RSSI], FST_IDX_RSSI, NO_UNIT);
 }
 
 
@@ -8812,7 +8821,7 @@ void menuProcIndex(uint8_t event)
                     for (uint8_t i = 0; i < 4; i += 1) {
                       lcd_img((6 + 4 * i) * FW, y, sticks, i);
                       if (g_eeGeneral.stickReverse & (1 << i))
-                        lcd_char_inverse((6 + 4 * i) * FW, y, 3 * FW, 0);
+                      lcd_char_inverse((6 + 4 * i) * FW, y, 3 * FW, 0);
                     }
                     if (sub == subN) {
                       attr = 0;
@@ -9988,29 +9997,8 @@ void menuProcProtocol(uint8_t event) {
     }
     break;
 
-  case PROTO_AFHDS:
-    mstate2.check_columns(event, 2);
-
-    lcd_puts_Pleft(y, PSTR(STR_AFHDS_TYPE));
-    if (sub == subN) {
-      g_model.FreqOffset = checkIncDec16(g_model.FreqOffset, -500, 500, EE_MODEL);
-      attr = InverseBlink;
-    }
-    lcd_outdezAtt(17 * FW, y, g_model.FreqOffset, attr);
-    y += FH;
-    subN++;
-    if (sub == subN) {
-      rangeBindAction(y, PXX_BIND);
-    }
-    break;
-#ifdef PROTO_ELRS1
-  case PROTO_ELRS1:
-#endif
-   case PROTO_ELRS2:
-
-
-    crossfileMenu(mstate2,  event,  sub,   subN,  y );
- 
+    case PROTO_ELRS2:
+    crossfileMenu(mstate2,event,sub,subN,y);
     break;
   default:
     break;

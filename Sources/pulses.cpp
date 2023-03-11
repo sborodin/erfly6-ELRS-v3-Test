@@ -154,26 +154,15 @@ void setupPulses() {
       break;
     case PROTO_AFHDS2A:
       DisablePPMOut();
-       crsf_shutdown();
-    
+      crsf_shutdown();
       initAFHDS2A();
       EnablePRTTim();
       break;
-    case PROTO_AFHDS:
-      DisablePPMOut();
-       crsf_shutdown();
-      initAFHDS();
-      EnablePRTTim();
-      break;
-#ifdef PROTO_ELRS1
-    case PROTO_ELRS1:
-#endif
      case PROTO_ELRS2:
-        A7105_Sleep();
-        DisablePPMOut();
-        crsf_init();
-        EnablePRTTim();
-
+      A7105_Sleep();
+      DisablePPMOut();
+      crsf_init();
+      EnablePRTTim();
         break;
     }
 
